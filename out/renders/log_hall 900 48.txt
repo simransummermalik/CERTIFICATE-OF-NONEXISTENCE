@@ -1,0 +1,4 @@
+usage: Blender [-h] [--shot SHOT] [--res RES] [--samples SAMPLES] [--out OUT]
+               [--laps LAPS] [--aspect ASPECT]
+Blender: error: argument --res: expected one argument
+Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 01:30:33)

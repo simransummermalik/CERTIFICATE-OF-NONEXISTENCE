@@ -1,0 +1,748 @@
+{
+ "name": "No. 1 Holonomy Lane",
+ "unit": "quarter inch",
+ "rooms": {
+  "BR1": {
+   "name": "Bedroom I",
+   "kind": "room",
+   "w": 696,
+   "d": 672,
+   "h": 480,
+   "doors": {
+    "D10": {
+     "wall": "S",
+     "at": 384,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "D12": {
+     "wall": "E",
+     "at": 336,
+     "z": 0,
+     "width": 136,
+     "height": 320,
+     "kind": "door"
+    }
+   },
+   "stair": null
+  },
+  "BR2": {
+   "name": "Bedroom II",
+   "kind": "room",
+   "w": 720,
+   "d": 672,
+   "h": 480,
+   "doors": {
+    "D11": {
+     "wall": "S",
+     "at": 336,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "D12": {
+     "wall": "W",
+     "at": 336,
+     "z": 0,
+     "width": 136,
+     "height": 320,
+     "kind": "door"
+    }
+   },
+   "stair": null
+  },
+  "BTH": {
+   "name": "Bath",
+   "kind": "room",
+   "w": 480,
+   "d": 732,
+   "h": 432,
+   "doors": {
+    "D13": {
+     "wall": "W",
+     "at": 372,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    }
+   },
+   "stair": null
+  },
+  "COR": {
+   "name": "The Hall",
+   "kind": "corridor",
+   "w": 1849,
+   "d": 240,
+   "h": 432,
+   "doors": {
+    "D05": {
+     "wall": "W",
+     "at": 120,
+     "z": 0,
+     "width": 192,
+     "height": 320,
+     "kind": "opening"
+    },
+    "D07": {
+     "wall": "N",
+     "at": 552,
+     "z": 0,
+     "width": 192,
+     "height": 320,
+     "kind": "opening"
+    },
+    "D08": {
+     "wall": "N",
+     "at": 1032,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "HALL": {
+     "wall": "E",
+     "at": 120,
+     "z": 0,
+     "width": 192,
+     "height": 320,
+     "kind": "opening"
+    }
+   },
+   "stair": null
+  },
+  "DIN": {
+   "name": "Dining Room",
+   "kind": "room",
+   "w": 768,
+   "d": 960,
+   "h": 480,
+   "doors": {
+    "D01": {
+     "wall": "W",
+     "at": 480,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "D02": {
+     "wall": "E",
+     "at": 480,
+     "z": 0,
+     "width": 240,
+     "height": 320,
+     "kind": "opening"
+    }
+   },
+   "stair": null
+  },
+  "ENT": {
+   "name": "Entrance Hall",
+   "kind": "room",
+   "w": 480,
+   "d": 1224,
+   "h": 576,
+   "doors": {
+    "D03": {
+     "wall": "W",
+     "at": 480,
+     "z": 0,
+     "width": 192,
+     "height": 320,
+     "kind": "opening"
+    },
+    "D04": {
+     "wall": "E",
+     "at": 576,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "HALL": {
+     "wall": "W",
+     "at": 1104,
+     "z": 0,
+     "width": 192,
+     "height": 320,
+     "kind": "opening"
+    },
+    "front": {
+     "wall": "S",
+     "at": 240,
+     "z": 0,
+     "width": 168,
+     "height": 320,
+     "kind": "front"
+    }
+   },
+   "stair": null
+  },
+  "G1": {
+   "name": "Gallery I",
+   "kind": "gallery",
+   "w": 1440,
+   "d": 336,
+   "h": 480,
+   "doors": {
+    "D07": {
+     "wall": "N",
+     "at": 360,
+     "z": 0,
+     "width": 192,
+     "height": 320,
+     "kind": "opening"
+    },
+    "in": {
+     "wall": "S",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": null
+  },
+  "G2": {
+   "name": "Gallery II",
+   "kind": "gallery",
+   "w": 1440,
+   "d": 336,
+   "h": 480,
+   "doors": {
+    "D09": {
+     "wall": "W",
+     "at": 168,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "in": {
+     "wall": "S",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": null
+  },
+  "G3": {
+   "name": "Gallery III",
+   "kind": "gallery",
+   "w": 1440,
+   "d": 336,
+   "h": 480,
+   "doors": {
+    "D10": {
+     "wall": "N",
+     "at": 384,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "D11": {
+     "wall": "N",
+     "at": 1056,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "in": {
+     "wall": "S",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": null
+  },
+  "G4": {
+   "name": "Gallery IV",
+   "kind": "gallery",
+   "w": 1440,
+   "d": 336,
+   "h": 480,
+   "doors": {
+    "D13": {
+     "wall": "N",
+     "at": 360,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "in": {
+     "wall": "S",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": null
+  },
+  "G5": {
+   "name": "Gallery V",
+   "kind": "gallery",
+   "w": 1440,
+   "d": 336,
+   "h": 480,
+   "doors": {
+    "in": {
+     "wall": "S",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 168,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": null
+  },
+  "KIT": {
+   "name": "Kitchen",
+   "kind": "room",
+   "w": 768,
+   "d": 1224,
+   "h": 480,
+   "doors": {
+    "D04": {
+     "wall": "W",
+     "at": 576,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    }
+   },
+   "stair": null
+  },
+  "LIB": {
+   "name": "Library",
+   "kind": "room",
+   "w": 864,
+   "d": 1224,
+   "h": 528,
+   "doors": {
+    "D01": {
+     "wall": "E",
+     "at": 480,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "D05": {
+     "wall": "E",
+     "at": 1104,
+     "z": 0,
+     "width": 192,
+     "height": 320,
+     "kind": "opening"
+    },
+    "D09": {
+     "wall": "N",
+     "at": 168,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    }
+   },
+   "stair": null
+  },
+  "LIV": {
+   "name": "Living Room",
+   "kind": "room",
+   "w": 1056,
+   "d": 960,
+   "h": 480,
+   "doors": {
+    "D02": {
+     "wall": "W",
+     "at": 480,
+     "z": 0,
+     "width": 240,
+     "height": 320,
+     "kind": "opening"
+    },
+    "D03": {
+     "wall": "E",
+     "at": 480,
+     "z": 0,
+     "width": 192,
+     "height": 320,
+     "kind": "opening"
+    }
+   },
+   "stair": null
+  },
+  "ST1": {
+   "name": "Stair Hall, Flight I",
+   "kind": "stair",
+   "w": 852,
+   "d": 192,
+   "h": 896,
+   "doors": {
+    "D08": {
+     "wall": "S",
+     "at": 96,
+     "z": 0,
+     "width": 144,
+     "height": 320,
+     "kind": "door"
+    },
+    "in": {
+     "wall": "N",
+     "at": 96,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 96,
+     "z": 464,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": {
+    "x0": 192,
+    "risers": 16,
+    "riser": 29,
+    "tread": 44,
+    "width": 192
+   }
+  },
+  "ST2": {
+   "name": "Stair Hall, Flight II",
+   "kind": "stair",
+   "w": 852,
+   "d": 192,
+   "h": 896,
+   "doors": {
+    "in": {
+     "wall": "N",
+     "at": 96,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 96,
+     "z": 464,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": {
+    "x0": 192,
+    "risers": 16,
+    "riser": 29,
+    "tread": 44,
+    "width": 192
+   }
+  },
+  "ST3": {
+   "name": "Stair Hall, Flight III",
+   "kind": "stair",
+   "w": 852,
+   "d": 192,
+   "h": 896,
+   "doors": {
+    "in": {
+     "wall": "N",
+     "at": 96,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 96,
+     "z": 464,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": {
+    "x0": 192,
+    "risers": 16,
+    "riser": 29,
+    "tread": 44,
+    "width": 192
+   }
+  },
+  "ST4": {
+   "name": "Stair Hall, Flight IV",
+   "kind": "stair",
+   "w": 852,
+   "d": 192,
+   "h": 896,
+   "doors": {
+    "in": {
+     "wall": "N",
+     "at": 96,
+     "z": 0,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    },
+    "out": {
+     "wall": "E",
+     "at": 96,
+     "z": 464,
+     "width": 192,
+     "height": 384,
+     "kind": "opening"
+    }
+   },
+   "stair": {
+    "x0": 192,
+    "risers": 16,
+    "riser": 29,
+    "tread": 44,
+    "width": 192
+   }
+  }
+ },
+ "doorways": [
+  {
+   "key": "F1",
+   "a": "ST1",
+   "door_a": "out",
+   "b": "ST2",
+   "door_b": "in",
+   "wall": 0
+  },
+  {
+   "key": "F2",
+   "a": "ST2",
+   "door_a": "out",
+   "b": "ST3",
+   "door_b": "in",
+   "wall": 0
+  },
+  {
+   "key": "F3",
+   "a": "ST3",
+   "door_a": "out",
+   "b": "ST4",
+   "door_b": "in",
+   "wall": 0
+  },
+  {
+   "key": "F4",
+   "a": "ST4",
+   "door_a": "out",
+   "b": "ST1",
+   "door_b": "in",
+   "wall": 0
+  },
+  {
+   "key": "C1",
+   "a": "G1",
+   "door_a": "out",
+   "b": "G2",
+   "door_b": "in",
+   "wall": 24
+  },
+  {
+   "key": "C2",
+   "a": "G2",
+   "door_a": "out",
+   "b": "G3",
+   "door_b": "in",
+   "wall": 24
+  },
+  {
+   "key": "C3",
+   "a": "G3",
+   "door_a": "out",
+   "b": "G4",
+   "door_b": "in",
+   "wall": 24
+  },
+  {
+   "key": "C4",
+   "a": "G4",
+   "door_a": "out",
+   "b": "G5",
+   "door_b": "in",
+   "wall": 24
+  },
+  {
+   "key": "C5",
+   "a": "G5",
+   "door_a": "out",
+   "b": "G1",
+   "door_b": "in",
+   "wall": 24
+  },
+  {
+   "key": "D01",
+   "a": "LIB",
+   "door_a": "D01",
+   "b": "DIN",
+   "door_b": "D01",
+   "wall": 24
+  },
+  {
+   "key": "D02",
+   "a": "DIN",
+   "door_a": "D02",
+   "b": "LIV",
+   "door_b": "D02",
+   "wall": 24
+  },
+  {
+   "key": "D03",
+   "a": "LIV",
+   "door_a": "D03",
+   "b": "ENT",
+   "door_b": "D03",
+   "wall": 24
+  },
+  {
+   "key": "D04",
+   "a": "ENT",
+   "door_a": "D04",
+   "b": "KIT",
+   "door_b": "D04",
+   "wall": 24
+  },
+  {
+   "key": "D05",
+   "a": "LIB",
+   "door_a": "D05",
+   "b": "COR",
+   "door_b": "D05",
+   "wall": 24
+  },
+  {
+   "key": "HALL",
+   "a": "COR",
+   "door_a": "HALL",
+   "b": "ENT",
+   "door_b": "HALL",
+   "wall": 24
+  },
+  {
+   "key": "D07",
+   "a": "COR",
+   "door_a": "D07",
+   "b": "G1",
+   "door_b": "D07",
+   "wall": 24
+  },
+  {
+   "key": "D08",
+   "a": "COR",
+   "door_a": "D08",
+   "b": "ST1",
+   "door_b": "D08",
+   "wall": 24
+  },
+  {
+   "key": "D09",
+   "a": "LIB",
+   "door_a": "D09",
+   "b": "G2",
+   "door_b": "D09",
+   "wall": 24
+  },
+  {
+   "key": "D10",
+   "a": "G3",
+   "door_a": "D10",
+   "b": "BR1",
+   "door_b": "D10",
+   "wall": 24
+  },
+  {
+   "key": "D11",
+   "a": "G3",
+   "door_a": "D11",
+   "b": "BR2",
+   "door_b": "D11",
+   "wall": 24
+  },
+  {
+   "key": "D12",
+   "a": "BR1",
+   "door_a": "D12",
+   "b": "BR2",
+   "door_b": "D12",
+   "wall": 24
+  },
+  {
+   "key": "D13",
+   "a": "G4",
+   "door_a": "D13",
+   "b": "BTH",
+   "door_b": "D13",
+   "wall": 24
+  }
+ ]
+}

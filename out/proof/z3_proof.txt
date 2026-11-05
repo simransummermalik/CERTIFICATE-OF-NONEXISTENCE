@@ -1,0 +1,196 @@
+mp(mp(mp(and-elim(asserted(And(ST3.turn == (ST2.turn + 1)%4,
+                               ST3.x ==
+                               ST2.x +
+                               If(ST2.turn == 0,
+                                  1044,
+                                  If(ST2.turn == 1,
+                                     0,
+                                     If(ST2.turn == 2,
+                                        -1044,
+                                        0))),
+                               ST3.y ==
+                               ST2.y +
+                               If(ST2.turn == 0,
+                                  0,
+                                  If(ST2.turn == 1,
+                                     1044,
+                                     If(ST2.turn == 2,
+                                        0,
+                                        -1044))),
+                               ST3.z == ST2.z + 464)),
+                  ST3.z == ST2.z + 464),
+         monotonicity(rewrite(ST2.z + 464 == 464 + ST2.z),
+                      (ST3.z == ST2.z + 464) ==
+                      (ST3.z == 464 + ST2.z)),
+         ST3.z == 464 + ST2.z),
+      rewrite((ST3.z == 464 + ST2.z) ==
+              (ST3.z == 464 + ST2.z)),
+      ST3.z == 464 + ST2.z),
+   trans(monotonicity(monotonicity(trans(mp(mp(and-elim(asserted(And(ST2.turn ==
+                                        (ST1.turn + 1)%4,
+                                        ST2.x ==
+                                        ST1.x +
+                                        If(ST1.turn == 0,
+                                        1044,
+                                        If(ST1.turn == 1,
+                                        0,
+                                        If(ST1.turn == 2,
+                                        -1044,
+                                        0))),
+                                        ST2.y ==
+                                        ST1.y +
+                                        If(ST1.turn == 0,
+                                        0,
+                                        If(ST1.turn == 1,
+                                        1044,
+                                        If(ST1.turn == 2,
+                                        0,
+                                        -1044))),
+                                        ST2.z == ST1.z + 464)),
+                                        ST2.z == ST1.z + 464),
+                                        monotonicity(rewrite(ST1.z +
+                                        464 ==
+                                        464 + ST1.z),
+                                        (ST2.z ==
+                                        ST1.z + 464) ==
+                                        (ST2.z ==
+                                        464 + ST1.z)),
+                                        ST2.z == 464 + ST1.z),
+                                        rewrite((ST2.z ==
+                                        464 + ST1.z) ==
+                                        (ST2.z ==
+                                        464 + ST1.z)),
+                                        ST2.z == 464 + ST1.z),
+                                        monotonicity(trans(mp(mp(and-elim(asserted(And(ST1.turn ==
+                                        (ST4.turn + 1)%4,
+                                        ST1.x ==
+                                        ST4.x +
+                                        If(ST4.turn == 0,
+                                        1044,
+                                        If(ST4.turn == 1,
+                                        0,
+                                        If(ST4.turn == 2,
+                                        -1044,
+                                        0))),
+                                        ST1.y ==
+                                        ST4.y +
+                                        If(ST4.turn == 0,
+                                        0,
+                                        If(ST4.turn == 1,
+                                        1044,
+                                        If(ST4.turn == 2,
+                                        0,
+                                        -1044))),
+                                        ST1.z == ST4.z + 464)),
+                                        ST1.z == ST4.z + 464),
+                                        monotonicity(rewrite(ST4.z +
+                                        464 ==
+                                        464 + ST4.z),
+                                        (ST1.z ==
+                                        ST4.z + 464) ==
+                                        (ST1.z ==
+                                        464 + ST4.z)),
+                                        ST1.z == 464 + ST4.z),
+                                        rewrite((ST1.z ==
+                                        464 + ST4.z) ==
+                                        (ST1.z ==
+                                        464 + ST4.z)),
+                                        ST1.z == 464 + ST4.z),
+                                        monotonicity(mp(mp(and-elim(asserted(And(ST4.turn ==
+                                        (ST3.turn + 1)%4,
+                                        ST4.x ==
+                                        ST3.x +
+                                        If(ST3.turn == 0,
+                                        1044,
+                                        If(ST3.turn == 1,
+                                        0,
+                                        If(ST3.turn == 2,
+                                        -1044,
+                                        0))),
+                                        ST4.y ==
+                                        ST3.y +
+                                        If(ST3.turn == 0,
+                                        0,
+                                        If(ST3.turn == 1,
+                                        1044,
+                                        If(ST3.turn == 2,
+                                        0,
+                                        -1044))),
+                                        ST4.z == ST3.z + 464)),
+                                        ST4.z == ST3.z + 464),
+                                        monotonicity(rewrite(ST3.z +
+                                        464 ==
+                                        464 + ST3.z),
+                                        (ST4.z ==
+                                        ST3.z + 464) ==
+                                        (ST4.z ==
+                                        464 + ST3.z)),
+                                        ST4.z == 464 + ST3.z),
+                                        rewrite((ST4.z ==
+                                        464 + ST3.z) ==
+                                        (ST4.z ==
+                                        464 + ST3.z)),
+                                        ST4.z == 464 + ST3.z),
+                                        464 + ST4.z ==
+                                        464 + 464 + ST3.z),
+                                        ST1.z ==
+                                        464 + 464 + ST3.z),
+                                        464 + ST1.z ==
+                                        464 +
+                                        464 +
+                                        464 +
+                                        ST3.z),
+                                        ST2.z ==
+                                        464 +
+                                        464 +
+                                        464 +
+                                        ST3.z),
+                                   464 + ST2.z ==
+                                   464 +
+                                   464 +
+                                   464 +
+                                   464 +
+                                   ST3.z),
+                      (ST3.z == 464 + ST2.z) ==
+                      (ST3.z ==
+                       464 + 464 + 464 + 464 + ST3.z)),
+         trans(monotonicity(trans(monotonicity(trans(monotonicity(rewrite(464 +
+                                        464 +
+                                        ST3.z ==
+                                        928 + ST3.z),
+                                        464 +
+                                        464 +
+                                        464 +
+                                        ST3.z ==
+                                        464 + 928 + ST3.z),
+                                        rewrite(464 +
+                                        928 +
+                                        ST3.z ==
+                                        1392 + ST3.z),
+                                        464 +
+                                        464 +
+                                        464 +
+                                        ST3.z ==
+                                        1392 + ST3.z),
+                                        464 +
+                                        464 +
+                                        464 +
+                                        464 +
+                                        ST3.z ==
+                                        464 + 1392 + ST3.z),
+                                  rewrite(464 + 1392 + ST3.z ==
+                                        1856 + ST3.z),
+                                  464 +
+                                  464 +
+                                  464 +
+                                  464 +
+                                  ST3.z ==
+                                  1856 + ST3.z),
+                            (ST3.z ==
+                             464 + 464 + 464 + 464 + ST3.z) ==
+                            (ST3.z == 1856 + ST3.z)),
+               rewrite((ST3.z == 1856 + ST3.z) == False),
+               (ST3.z == 464 + 464 + 464 + 464 + ST3.z) ==
+               False),
+         (ST3.z == 464 + ST2.z) == False),
+   False)

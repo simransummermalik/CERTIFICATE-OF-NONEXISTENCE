@@ -1,0 +1,1 @@
+./render/batch.sh: line 5: 98424 Terminated: 15          $B -b -P render/scene.py -- --shot $1 --res $2 --samples $3 --aspect $4 --laps $5 --out out/renders/${prefix}_$1.png > out/renders/log_$1.txt 2>&1

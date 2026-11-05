@@ -1,0 +1,5 @@
+finished vertigo
+./render/batch.sh: line 5: 97724 Segmentation fault: 11  $B -b -P render/scene.py -- --shot $1 --res $2 --samples $3 --aspect $4 --laps $5 --out out/renders/${prefix}_$1.png > out/renders/log_$1.txt 2>&1
+finished hall
+./render/batch.sh: line 5: 97733 Segmentation fault: 11  $B -b -P render/scene.py -- --shot $1 --res $2 --samples $3 --aspect $4 --laps $5 --out out/renders/${prefix}_$1.png > out/renders/log_$1.txt 2>&1
+finished tape

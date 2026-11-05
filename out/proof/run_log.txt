@@ -1,0 +1,487 @@
+{
+ "building": "No. 1 Holonomy Lane",
+ "address": "1 Holonomy Lane · Charlotte, North Carolina",
+ "sha256": "21a49c12b72bc4eeca1a84054d9370f2dc2892ccea497a614e95113e833b472a",
+ "z3_version": "5.3.3",
+ "rooms": 18,
+ "doorways": 22,
+ "local_checks": 92,
+ "local_failures": [],
+ "verdict": "unsat",
+ "core": [
+  "F1",
+  "F2",
+  "F3",
+  "F4"
+ ],
+ "seconds_main": 0.1818,
+ "seconds_total": 160.162,
+ "proof_chars": 10018,
+ "proof_lines": 196,
+ "seams": [
+  "F4",
+  "C5",
+  "HALL"
+ ],
+ "seam_alone_exists": {
+  "F4": false,
+  "C5": false,
+  "HALL": false
+ },
+ "exists_without_seams": true,
+ "fixes_one": [],
+ "fixes_two": [],
+ "triples_tried": 1540,
+ "loops": [
+  {
+   "seam": "F4",
+   "base": "ST1",
+   "loop": [
+    [
+     "ST1",
+     "F1",
+     "ST2"
+    ],
+    [
+     "ST2",
+     "F2",
+     "ST3"
+    ],
+    [
+     "ST3",
+     "F3",
+     "ST4"
+    ],
+    [
+     "ST4",
+     "F4",
+     "ST1"
+    ]
+   ],
+   "steps": [
+    {
+     "from": "ST1",
+     "doorway": "F1",
+     "to": "ST2",
+     "step": {
+      "turns": 1,
+      "t": [
+       1044,
+       0,
+       464
+      ]
+     },
+     "so_far": {
+      "turns": 1,
+      "t": [
+       1044,
+       0,
+       464
+      ]
+     }
+    },
+    {
+     "from": "ST2",
+     "doorway": "F2",
+     "to": "ST3",
+     "step": {
+      "turns": 1,
+      "t": [
+       1044,
+       0,
+       464
+      ]
+     },
+     "so_far": {
+      "turns": 2,
+      "t": [
+       1044,
+       1044,
+       928
+      ]
+     }
+    },
+    {
+     "from": "ST3",
+     "doorway": "F3",
+     "to": "ST4",
+     "step": {
+      "turns": 1,
+      "t": [
+       1044,
+       0,
+       464
+      ]
+     },
+     "so_far": {
+      "turns": 3,
+      "t": [
+       0,
+       1044,
+       1392
+      ]
+     }
+    },
+    {
+     "from": "ST4",
+     "doorway": "F4",
+     "to": "ST1",
+     "step": {
+      "turns": 1,
+      "t": [
+       1044,
+       0,
+       464
+      ]
+     },
+     "so_far": {
+      "turns": 0,
+      "t": [
+       0,
+       0,
+       1856
+      ]
+     }
+    }
+   ],
+   "holonomy": {
+    "turns": 0,
+    "t": [
+     0,
+     0,
+     1856
+    ],
+    "text": "rise 38′-8″"
+   },
+   "world": {
+    "turns": 0,
+    "t": [
+     0,
+     0,
+     1856
+    ],
+    "pivot": null
+   },
+   "solver": "unsat",
+   "core": [
+    "F1",
+    "F2",
+    "F3",
+    "F4"
+   ]
+  },
+  {
+   "seam": "C5",
+   "base": "G1",
+   "loop": [
+    [
+     "G1",
+     "C1",
+     "G2"
+    ],
+    [
+     "G2",
+     "C2",
+     "G3"
+    ],
+    [
+     "G3",
+     "C3",
+     "G4"
+    ],
+    [
+     "G4",
+     "C4",
+     "G5"
+    ],
+    [
+     "G5",
+     "C5",
+     "G1"
+    ]
+   ],
+   "steps": [
+    {
+     "from": "G1",
+     "doorway": "C1",
+     "to": "G2",
+     "step": {
+      "turns": 3,
+      "t": [
+       1464,
+       336,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 3,
+      "t": [
+       1464,
+       336,
+       0
+      ]
+     }
+    },
+    {
+     "from": "G2",
+     "doorway": "C2",
+     "to": "G3",
+     "step": {
+      "turns": 3,
+      "t": [
+       1464,
+       336,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 2,
+      "t": [
+       1800,
+       -1128,
+       0
+      ]
+     }
+    },
+    {
+     "from": "G3",
+     "doorway": "C3",
+     "to": "G4",
+     "step": {
+      "turns": 3,
+      "t": [
+       1464,
+       336,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 1,
+      "t": [
+       336,
+       -1464,
+       0
+      ]
+     }
+    },
+    {
+     "from": "G4",
+     "doorway": "C4",
+     "to": "G5",
+     "step": {
+      "turns": 3,
+      "t": [
+       1464,
+       336,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 0,
+      "t": [
+       0,
+       0,
+       0
+      ]
+     }
+    },
+    {
+     "from": "G5",
+     "doorway": "C5",
+     "to": "G1",
+     "step": {
+      "turns": 3,
+      "t": [
+       1464,
+       336,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 3,
+      "t": [
+       1464,
+       336,
+       0
+      ]
+     }
+    }
+   ],
+   "holonomy": {
+    "turns": 3,
+    "t": [
+     1464,
+     336,
+     0
+    ],
+    "text": "rotation 270°"
+   },
+   "world": {
+    "turns": 3,
+    "t": [
+     -4008,
+     288,
+     0
+    ],
+    "pivot": [
+     "-1860",
+     "2148"
+    ]
+   },
+   "solver": "unsat",
+   "core": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+   ]
+  },
+  {
+   "seam": "HALL",
+   "base": "ENT",
+   "loop": [
+    [
+     "ENT",
+     "D03",
+     "LIV"
+    ],
+    [
+     "LIV",
+     "D02",
+     "DIN"
+    ],
+    [
+     "DIN",
+     "D01",
+     "LIB"
+    ],
+    [
+     "LIB",
+     "D05",
+     "COR"
+    ],
+    [
+     "COR",
+     "HALL",
+     "ENT"
+    ]
+   ],
+   "steps": [
+    {
+     "from": "ENT",
+     "doorway": "D03",
+     "to": "LIV",
+     "step": {
+      "turns": 0,
+      "t": [
+       -1080,
+       0,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 0,
+      "t": [
+       -1080,
+       0,
+       0
+      ]
+     }
+    },
+    {
+     "from": "LIV",
+     "doorway": "D02",
+     "to": "DIN",
+     "step": {
+      "turns": 0,
+      "t": [
+       -792,
+       0,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 0,
+      "t": [
+       -1872,
+       0,
+       0
+      ]
+     }
+    },
+    {
+     "from": "DIN",
+     "doorway": "D01",
+     "to": "LIB",
+     "step": {
+      "turns": 0,
+      "t": [
+       -888,
+       0,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 0,
+      "t": [
+       -2760,
+       0,
+       0
+      ]
+     }
+    },
+    {
+     "from": "LIB",
+     "doorway": "D05",
+     "to": "COR",
+     "step": {
+      "turns": 0,
+      "t": [
+       888,
+       984,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 0,
+      "t": [
+       -1872,
+       984,
+       0
+      ]
+     }
+    },
+    {
+     "from": "COR",
+     "doorway": "HALL",
+     "to": "ENT",
+     "step": {
+      "turns": 0,
+      "t": [
+       1873,
+       -984,
+       0
+      ]
+     },
+     "so_far": {
+      "turns": 0,
+      "t": [
+       1,
+       0,
+       0
+      ]
+     }
+    }
+   ],
+   "holonomy": {
+    "turns": 0,
+    "t": [
+     1,
+     0,
+     0
+    ],
+    "text": "shift (0′-0¼″, 0′-0″)"
+   },
+   "world
+triples that make the house exist: 64 of 1540

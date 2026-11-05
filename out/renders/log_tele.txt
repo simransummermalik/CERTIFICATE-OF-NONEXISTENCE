@@ -1,0 +1,11 @@
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:58: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:320: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  g.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:341: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  w.use_nodes = True
+00:14.107  render           | Saved: 'out/renders/test_lookup_tele.png'
+WROTE out/renders/test_lookup_tele.png
+Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 01:30:33)
+
+Blender quit

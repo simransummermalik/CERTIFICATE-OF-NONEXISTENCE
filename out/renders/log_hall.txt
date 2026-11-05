@@ -1,0 +1,12 @@
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:58: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:335: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  g.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:561: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:605: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:626: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/scene.py:356: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  w.use_nodes = True
