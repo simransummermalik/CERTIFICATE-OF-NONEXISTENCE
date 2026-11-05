@@ -19,7 +19,6 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageOps
-from scipy.ndimage import gaussian_filter
 
 Image.MAX_IMAGE_PIXELS = None
 
@@ -35,6 +34,20 @@ TITLE = "Certificate_of_Nonexistence"
 
 
 # ----------------------------------------------------------------------------- paper
+def gaussian_filter(a, sigma):
+    """Small separable Gaussian blur (enough for grain; keeps the build to numpy and Pillow)."""
+    r = max(1, int(3 * sigma + 0.5))
+    k = np.exp(-0.5 * (np.arange(-r, r + 1) / sigma) ** 2).astype(np.float32)
+    k /= k.sum()
+    out = np.zeros_like(a)
+    for i, w in enumerate(k):
+        out += w * np.roll(a, i - r, axis=0)
+    a, out = out, np.zeros_like(a)
+    for i, w in enumerate(k):
+        out += w * np.roll(a, i - r, axis=1)
+    return out
+
+
 def field(rng, scale, shape=(H, W)):
     """Smooth noise with features about `scale` pixels across, unit variance."""
     h, w = shape
@@ -110,11 +123,16 @@ def best_render(shot):
     return tests[-1], False
 
 
-def photograph(path, size, seed):
-    """Fit a render to its slot and give it a fine, slightly luminance-weighted grain."""
+# A listing photographer lifts the midtones of a dim interior; black and white stay put.
+LIFT = {"landing_view": 0.80, "vertigo": 0.94, "tape": 0.96}
+
+
+def photograph(path, size, seed, lift=1.0):
+    """Fit a render to its slot, lift its midtones, and give it a fine luminance-weighted grain."""
     im = Image.open(path).convert("RGB")
     im = ImageOps.fit(im, size, Image.LANCZOS, centering=(0.5, 0.5))
     a = np.asarray(im).astype(np.float32) / 255.0
+    a **= lift
     rng = np.random.default_rng(seed)
     g = gaussian_filter(rng.standard_normal(a.shape[:2]).astype(np.float32), 0.55)
     g /= g.std() + 1e-6
@@ -140,7 +158,7 @@ def plate_property():
         x1, y1 = round((x + w) * PX), round((y + h) * PX)
         path, final = best_render(shot)
         used[shot] = (path.name, final)
-        arr[y0:y1, x0:x1] = photograph(path, (x1 - x0, y1 - y0), 100 + i)
+        arr[y0:y1, x0:x1] = photograph(path, (x1 - x0, y1 - y0), 100 + i, LIFT.get(shot, 1.0))
     ink = Image.fromarray((arr * 255 + 0.5).astype(np.uint8), "RGB")
     sheet = paper(11, (0.990, 0.986, 0.978), mottle=0.0035, tooth=0.0045)
     return print_on(ink, sheet), used

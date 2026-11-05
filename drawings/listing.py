@@ -116,7 +116,7 @@ set_paragraph(svg, cx, vy + 76, cw,
               SERIF, pt(11.2), pt(15.6), italic=True, justify=False)
 
 # ---------------------------------------------------------------------------- the three photographs
-by = HY + HH + 92
+by = HY + HH + 100
 gap = 44
 pw = (R - L - 2 * gap) / 3
 ph = pw * 2 / 3
@@ -125,7 +125,7 @@ photo("hall", L + pw + gap, by, pw, ph, 3, "The long hall, looking east")
 photo("tape", L + 2 * (pw + gap), by, pw, ph, 4, "The hall, measured")
 
 # ---------------------------------------------------------------------------- footer
-fy = by + ph + 112
+fy = by + ph + 124
 svg.line(L, fy, R, fy, w=mm(0.12), color=INK)
 svg.line(L, fy + 6, R, fy + 6, w=mm(0.5), color=INK)
 svg.text(L, fy + 50, "HILBERT & CO.", size=pt(10), family=DIDOT, spacing=5, color=INK)

@@ -576,19 +576,26 @@ def oak_floor(name="oakfloor"):
     br.inputs["Mortar"].default_value = (0.20, 0.13, 0.08, 1)
     br.inputs["Bias"].default_value = 0.0
     nt.links.new(tc.outputs["Object"], br.inputs["Vector"])
+    # Grain runs along each board (x). Each board's random brick colour shifts the grain, so
+    # neighbouring boards never share a figure.
+    shift = nt.nodes.new("ShaderNodeVectorMath")
+    shift.operation = "MULTIPLY_ADD"
+    shift.inputs[1].default_value = (23.0, 17.0, 0.0)
+    nt.links.new(br.outputs["Color"], shift.inputs[0])
+    nt.links.new(tc.outputs["Object"], shift.inputs[2])
     wave = nt.nodes.new("ShaderNodeTexWave")
     wave.wave_type = "BANDS"
     wave.bands_direction = "Y"
-    wave.bands_direction = "X"
-    wave.inputs["Scale"].default_value = 0.35
-    wave.inputs["Distortion"].default_value = 1.6
+    wave.inputs["Scale"].default_value = 15.0
+    wave.inputs["Distortion"].default_value = 1.1
     wave.inputs["Detail"].default_value = 6.0
-    wave.inputs["Detail Scale"].default_value = 0.4
-    nt.links.new(tc.outputs["Object"], wave.inputs["Vector"])
+    wave.inputs["Detail Scale"].default_value = 2.2
+    wave.inputs["Detail Roughness"].default_value = 0.55
+    nt.links.new(shift.outputs["Vector"], wave.inputs["Vector"])
     mix = nt.nodes.new("ShaderNodeMix")
     mix.data_type = "RGBA"
     mix.blend_type = "MULTIPLY"
-    mix.inputs["Factor"].default_value = 0.10
+    mix.inputs["Factor"].default_value = 0.22
     nt.links.new(br.outputs["Color"], mix.inputs["A"])
     nt.links.new(wave.outputs["Color"], mix.inputs["B"])
     nt.links.new(mix.outputs["Result"], bsdf.inputs["Base Color"])
@@ -596,7 +603,12 @@ def oak_floor(name="oakfloor"):
     bump.inputs["Strength"].default_value = 0.35
     bump.inputs["Distance"].default_value = 0.004
     nt.links.new(br.outputs["Fac"], bump.inputs["Height"])
-    nt.links.new(bump.outputs["Normal"], bsdf.inputs["Normal"])
+    grain = nt.nodes.new("ShaderNodeBump")
+    grain.inputs["Strength"].default_value = 0.06
+    grain.inputs["Distance"].default_value = 0.001
+    nt.links.new(wave.outputs["Fac"], grain.inputs["Height"])
+    nt.links.new(bump.outputs["Normal"], grain.inputs["Normal"])
+    nt.links.new(grain.outputs["Normal"], bsdf.inputs["Normal"])
     return m
 
 
@@ -665,28 +677,47 @@ def tape(col, x_hook, x_case, y, width=1 / 12):
     me.materials.append(tape_material())
     ob = bpy.data.objects.new("tape", me)
     col.objects.link(ob)
-    # The case, its back against the wall, and the hook at the far end.
-    yellow = material("caseyellow", (0.78, 0.52, 0.04), rough=0.38, spec=0.5)
-    black = material("caseblack", (0.015, 0.015, 0.015), rough=0.55)
+    # The case, its back against the wall, and the hook at the far end. The case is exactly
+    # 3-1/8 in long, so the blade reads 459-1/8 where it enters, and the case says what to add.
+    from mathutils import Matrix as Mx
+    CL = 3.125 / 12
+    yellow = material("caseyellow", (0.78, 0.52, 0.04), rough=0.40, noise=0.03, noise_scale=160, bump=0.03, spec=0.5)
+    black = material("caseblack", (0.015, 0.015, 0.015), rough=0.62)
+    chrome = material("chrome", (0.86, 0.86, 0.86), rough=0.16, metallic=1.0, spec=0.5)
     d = -1 if x_case > x_hook else 1
-    cx = x_case + d * 0.13
+    cx = x_case + d * CL / 2
     bpy.ops.mesh.primitive_cube_add(size=1, location=(cx, y, 0.125))
     case = bpy.context.active_object
-    case.scale = (0.26, 0.14, 0.25)
+    case.scale = (CL, 0.14, 0.25)
     bev = case.modifiers.new("bevel", "BEVEL")
-    bev.width = 0.035
-    bev.segments = 10
+    bev.width = 0.045
+    bev.segments = 14
     case.data.materials.append(yellow)
     bpy.ops.object.shade_smooth()
     for side in (-1, 1):
-        bpy.ops.mesh.primitive_cylinder_add(radius=0.085, depth=0.012, vertices=64,
-                                            location=(cx + d * 0.01, y + side * 0.072, 0.13), rotation=(math.pi / 2, 0, 0))
-        bpy.context.active_object.data.materials.append(black)
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.056, depth=0.012, vertices=96,
+                                            location=(cx, y + side * 0.07, 0.158), rotation=(math.pi / 2, 0, 0))
+        grip = bpy.context.active_object
+        gb = grip.modifiers.new("bevel", "BEVEL")
+        gb.width = 0.003
+        gb.segments = 4
+        grip.data.materials.append(black)
+        bpy.ops.object.shade_smooth()
+        bpy.ops.mesh.primitive_cylinder_add(radius=0.011, depth=0.016, vertices=48,
+                                            location=(cx, y + side * 0.07, 0.158), rotation=(math.pi / 2, 0, 0))
+        bpy.context.active_object.data.materials.append(chrome)
+        bpy.ops.object.shade_smooth()
+    # printed on the side facing the room
+    face = Mx.Translation((cx, y + 0.0712, 0.0)) @ Mx.Rotation(math.pi, 4, "Z") @ Mx.Rotation(math.pi / 2, 4, "X")
+    for body, size, z in (("INSIDE MEASURE", 0.0165, 0.081), ("ADD 3-1/8 IN", 0.029, 0.052)):
+        t = text_object(body, size, col, black)
+        t.matrix_world = Mx.Translation((0, 0, z)) @ face
     mb = MeshBuilder("hook")
     mb.box(x_hook - d * 0.01, y - width / 2, 0.0, x_hook + d * 0.004, y + width / 2, 0.06, M_STEEL[0])
-    mb.box(x_case + d * 0.255, y - 0.06, 0.0, x_case + d * 0.27, y + 0.06, 0.03, black)
+    mb.box(x_case + d * (CL - 0.005), y - 0.06, 0.0, x_case + d * (CL + 0.01), y + 0.06, 0.03, black)
+    # the blade lock, on the top at the front
+    mb.box(x_case + d * (CL - 0.075), y - 0.022, 0.236, x_case + d * (CL - 0.022), y + 0.022, 0.262, black)
     mb.finish(col)
-
 
 M_STEEL = []
 

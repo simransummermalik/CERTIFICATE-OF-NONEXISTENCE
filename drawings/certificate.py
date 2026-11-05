@@ -473,13 +473,13 @@ fid = svg.uid("ink")
 svg.defs.append(
     f'<filter id="{fid}" x="-0.1" y="-0.3" width="1.2" height="1.6" color-interpolation-filters="sRGB">'
     '<feTurbulence type="fractalNoise" baseFrequency="0.45" numOctaves="2" seed="5" result="e0"/>'
-    '<feDisplacementMap in="SourceGraphic" in2="e0" scale="2.4" xChannelSelector="R" yChannelSelector="G" result="ragged"/>'
+    '<feDisplacementMap in="SourceGraphic" in2="e0" scale="1.8" xChannelSelector="R" yChannelSelector="G" result="ragged"/>'
     '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="t0"/>'
     '<feColorMatrix in="t0" type="matrix" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1" result="tooth"/>'
     '<feTurbulence type="fractalNoise" baseFrequency="0.011 0.02" numOctaves="3" seed="3" result="p0"/>'
     '<feColorMatrix in="p0" type="matrix" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1" result="press"/>'
     '<feComposite in="tooth" in2="press" operator="arithmetic" k1="0" k2="0.5" k3="0.5" k4="0" result="v"/>'
-    '<feColorMatrix in="v" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -9 0 0 0 5.15" result="holes"/>'
+    '<feColorMatrix in="v" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -9 0 0 0 5.55" result="holes"/>'
     '<feComposite in="ragged" in2="holes" operator="in"/>'
     '</filter>')
 sy_ = sy - 22
