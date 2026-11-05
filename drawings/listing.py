@@ -120,7 +120,7 @@ by = HY + HH + 100
 gap = 44
 pw = (R - L - 2 * gap) / 3
 ph = pw * 2 / 3
-photo("landing_view", L, by, pw, ph, 2, "Landing, Level 1")
+photo("hero_a", L, by, pw, ph, 2, "The stair hall, looking up from Level 2")
 photo("hall", L + pw + gap, by, pw, ph, 3, "The long hall, looking east")
 photo("tape", L + 2 * (pw + gap), by, pw, ph, 4, "The hall, measured")
 

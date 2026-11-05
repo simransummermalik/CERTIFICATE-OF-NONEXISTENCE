@@ -1,0 +1,17 @@
+/Users/summermalik/Desktop/certificateofnonexistance/render/anyway.py:213: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  w.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/anyway.py:47: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+00:04.669  render           | Saved: 'out/anyway/t6_nx.png'
+00:06.874  render           | Saved: 'out/anyway/t6_ny.png'
+00:09.436  render           | Saved: 'out/anyway/t6_nz.png'
+00:11.238  render           | Saved: 'out/anyway/t6_plane.png'
+00:12.347  render           | Saved: 'out/anyway/t6_depth.png'
+WROTE out/anyway/t6_nx.png
+WROTE out/anyway/t6_ny.png
+WROTE out/anyway/t6_nz.png
+WROTE out/anyway/t6_plane.png
+WROTE out/anyway/t6_depth.png
+Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 01:30:33)
+
+Blender quit

@@ -48,6 +48,10 @@ def args():
     p.add_argument("--out", default="out/renders/test.png")
     p.add_argument("--laps", type=int, default=40)
     p.add_argument("--aspect", type=float, default=0.75)
+    p.add_argument("--sun_elev", type=float, default=38.0)
+    p.add_argument("--sun_az", type=float, default=200.0)
+    p.add_argument("--exposure", type=float, default=0.0)
+    p.add_argument("--haze", type=float, default=0.010)
     return p.parse_args(argv)
 
 
@@ -302,16 +306,18 @@ def build_stair_lap(col, M):
             fr.box(3.05, -0.38, 3.1, 3.12, -0.20, 3.4, M["brass"])    # pull
         fr.finish(col, M["lap"] @ flight_matrix(k))
 
-        num = text_object(str(k + 1), 3.4, col, M["paint"])
         from mathutils import Matrix as Mx
-        # On the landing's end wall (local x = 0), facing +x into the landing.
-        num.matrix_world = M["lap"] @ flight_matrix(k) @ Mx.Translation((0.012, FW / 2, 5.6)) @ \
-            Mx.Rotation(math.pi / 2, 4, "Z") @ Mx.Rotation(math.pi / 2, 4, "X")
-        if k != 0:
-            # a second numeral on the landing's long wall, facing the well
+        if k not in (1, 3):
+            # On the landing's end wall (local x = 0), facing +x into the landing. Landings II and IV
+            # have a window there instead, so their numeral is on the long wall only.
+            num = text_object(str(k + 1), 3.4, col, M["paint"])
+            num.matrix_world = M["lap"] @ flight_matrix(k) @ Mx.Translation((0.012, FW / 2, 5.6)) @ \
+                Mx.Rotation(math.pi / 2, 4, "Z") @ Mx.Rotation(math.pi / 2, 4, "X")
+        if k in (1, 3):
+            # on the landing's long wall instead, above its window, facing into the hall
             n2 = text_object(str(k + 1), 3.4, col, M["paint"])
-            n2.matrix_world = M["lap"] @ flight_matrix(k) @ Mx.Translation((LAND / 2, 0.012, 5.6)) @ \
-                Mx.Rotation(math.pi / 2, 4, "X")
+            n2.matrix_world = M["lap"] @ flight_matrix(k) @ Mx.Translation((LAND / 2, 0.012, 11.0)) @ \
+                Mx.Rotation(math.pi, 4, "Z") @ Mx.Rotation(math.pi / 2, 4, "X")
         nf = text_object(str(k + 1), 3.1, col, M["floorpaint"])
         nf.matrix_world = M["lap"] @ flight_matrix(k) @ Mx.Translation((LAND / 2, FW / 2 - 0.15, 0.006)) @ \
             Mx.Rotation(-k * math.pi / 2, 4, "Z")
@@ -321,10 +327,13 @@ def build_stair_lap(col, M):
         lamp.finish(col, M["lap"] @ flight_matrix(k))
 
 
+PLASTER = [(0.86, 0.83, 0.77)]        # warm beige; the hard-light shots switch to white
+
+
 def make_materials():
     M = {}
     M["concrete"] = board_concrete()
-    M["plaster"] = material("plaster", (0.86, 0.83, 0.77), rough=0.93, noise=0.04, noise_scale=0.8, bump=0.08, spec=0.2)
+    M["plaster"] = material("plaster", PLASTER[0], rough=0.93, noise=0.04, noise_scale=0.8, bump=0.08, spec=0.2)
     M["paint"] = material("paint", (0.035, 0.035, 0.037), rough=0.55, spec=0.35)
     M["floorpaint"] = material("floorpaint", (0.05, 0.05, 0.052), rough=0.7, spec=0.2)
     M["steel"] = material("steel", (0.05, 0.048, 0.045), rough=0.42, metallic=0.85)
@@ -565,7 +574,7 @@ def oak_floor(name="oakfloor"):
     tc = nt.nodes.new("ShaderNodeTexCoord")
     br = nt.nodes.new("ShaderNodeTexBrick")
     br.offset = 0.37
-    br.offset_frequency = 1
+    br.offset_frequency = 2           # alternate rows, so the board ends stagger
     br.squash = 1.0
     br.inputs["Scale"].default_value = 1.0
     br.inputs["Mortar Size"].default_value = 0.004
@@ -809,6 +818,81 @@ def shot_tape(a):
 
 
 SHOTS.update({"hall": shot_hall, "tape": shot_tape})
+
+
+# ============================================================================= LIGHT AND AIR
+# The first renders were lit like a showroom: soft sky everywhere, no shadow, no air. These
+# shots use a hard sun, a dim sky, and a little haze inside the rooms, so light has a shape.
+def haze(x0, y0, z0, x1, y1, z1, density=0.010, anisotropy=0.55, color=(1.0, 0.98, 0.95)):
+    bm = bmesh.new()
+    bmesh.ops.create_cube(bm, size=1.0)
+    me = bpy.data.meshes.new("haze")
+    bm.to_mesh(me)
+    bm.free()
+    ob = bpy.data.objects.new("haze", me)
+    ob.location = ((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)
+    ob.scale = (x1 - x0, y1 - y0, z1 - z0)
+    m = bpy.data.materials.new("haze")
+    m.use_nodes = True
+    nt = m.node_tree
+    out = nt.nodes.get("Material Output")
+    for n in list(nt.nodes):
+        if n != out:
+            nt.nodes.remove(n)
+    vol = nt.nodes.new("ShaderNodeVolumePrincipled")
+    vol.inputs["Density"].default_value = density
+    vol.inputs["Anisotropy"].default_value = anisotropy
+    vol.inputs["Color"].default_value = (*color, 1)
+    nt.links.new(vol.outputs["Volume"], out.inputs["Volume"])
+    me.materials.append(m)
+    bpy.context.scene.collection.objects.link(ob)
+    return ob
+
+
+def hard_light(sun_elev, sun_az, sun_strength=12.0, sky_strength=0.30, exposure=0.0,
+               look="AgX - High Contrast", sun_angle=0.6):
+    setup_world(sun_elev=sun_elev, sun_az=sun_az, sun_strength=sun_strength,
+                sky=(0.42, 0.56, 0.82), sky_strength=sky_strength)
+    bpy.data.lights["sun"].angle = math.radians(sun_angle)
+    sc = bpy.context.scene
+    sc.view_settings.exposure = exposure
+    try:
+        sc.view_settings.look = look
+    except Exception:
+        pass
+    sc.cycles.volume_bounces = 1
+
+
+def shot_well(a):
+    """Vertigo, in hard light: sun through the stair windows, the shaft falling away into lit air."""
+    PLASTER[0] = (0.90, 0.895, 0.88)
+    stair_scene(a, laps_below=a.laps)
+    hard_light(sun_elev=a.sun_elev, sun_az=a.sun_az, exposure=a.exposure)
+    haze(0.02, 0.02, -LAP * a.laps - 5, S - 0.02, S - 0.02, 14, density=a.haze, color=(0.97, 0.98, 1.0))
+    camera((C - 0.5, C - 0.4, 6.0), rot=(0, 0, 0), lens=20)
+
+
+def shot_hall_light(a):
+    PLASTER[0] = (0.90, 0.895, 0.88)
+    hall_scene(a)
+    hard_light(sun_elev=a.sun_elev, sun_az=a.sun_az, exposure=a.exposure)
+    haze(-0.4, 0.02, 0.02, HALL_L + 12, HALL_W - 0.02, HALL_H + 0.98, density=a.haze)
+    cam = camera((0.55, 2.5, 4.9), rot=(90, 0, -90), lens=17)
+    cam.data.shift_y = -0.06
+
+
+def shot_tape_light(a):
+    PLASTER[0] = (0.90, 0.895, 0.88)
+    hall_scene(a)
+    hard_light(sun_elev=a.sun_elev, sun_az=a.sun_az, exposure=a.exposure)
+    haze(-0.4, 0.02, 0.02, HALL_L + 12, HALL_W - 0.02, HALL_H + 0.98, density=a.haze)
+    cam = camera((1.35, 1.05, 0.42), look_at=(0.25, 0.26, 0.05), lens=70)
+    cam.data.dof.use_dof = True
+    cam.data.dof.focus_distance = 1.30
+    cam.data.dof.aperture_fstop = 2.4
+
+
+SHOTS.update({"well": shot_well, "hall_light": shot_hall_light, "tape_light": shot_tape_light})
 
 
 def main():

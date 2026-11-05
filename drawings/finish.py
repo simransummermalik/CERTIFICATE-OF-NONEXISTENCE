@@ -123,22 +123,36 @@ def best_render(shot):
     return tests[-1], False
 
 
-# A listing photographer lifts the midtones of a dim interior; black and white stay put.
-LIFT = {"landing_view": 0.80, "vertigo": 0.94, "tape": 0.96}
+# The photographs are printed in black and white, like an architecture monograph: the form and
+# the light are the subject. Per shot: black point, white point, gamma.
+MONO = {
+    "vertigo": (0.17, 0.95, 1.20),
+    "hero_a": (0.15, 0.96, 1.15),
+    "hall": (0.20, 0.97, 1.30),
+    "tape": (0.16, 0.95, 1.15),
+}
 
 
-def photograph(path, size, seed, lift=1.0):
-    """Fit a render to its slot, lift its midtones, and give it a fine luminance-weighted grain."""
+def photograph(path, size, seed, shot):
+    """Fit a render to its slot and print it in black and white with grain and a faint warm tone."""
     im = Image.open(path).convert("RGB")
     im = ImageOps.fit(im, size, Image.LANCZOS, centering=(0.5, 0.5))
     a = np.asarray(im).astype(np.float32) / 255.0
-    a **= lift
+    lo, hi, gamma = MONO.get(shot, (0.15, 0.95, 1.2))
+    l = a[..., 0] * 0.30 + a[..., 1] * 0.59 + a[..., 2] * 0.11
+    l = np.clip((l - lo) / (hi - lo), 0, 1) ** gamma
+    l = 0.6 * l * l * (3 - 2 * l) + 0.4 * l                      # gentle S-curve
+    h, w = l.shape
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    r2 = ((xx - w / 2) / (w / 2)) ** 2 + ((yy - h / 2) / (h / 2)) ** 2
+    l *= 1.0 - 0.07 * np.clip(r2 / 2, 0, 1) ** 1.5               # the lens falls off at the corners
     rng = np.random.default_rng(seed)
-    g = gaussian_filter(rng.standard_normal(a.shape[:2]).astype(np.float32), 0.55)
+    g = gaussian_filter(rng.standard_normal((h, w)).astype(np.float32), 0.7)
     g /= g.std() + 1e-6
-    lum = a.mean(axis=2, keepdims=True)
-    a += (g[..., None] * 0.012) * (0.35 + 0.65 * np.sqrt(np.clip(lum, 0, 1)))
-    return np.clip(a, 0, 1)
+    l += 0.022 * g * (0.25 + 0.75 * np.sqrt(np.clip(l, 0, 1)) * (1 - 0.5 * l))
+    l = np.clip(l, 0, 1)
+    # a warm black, as pigment prints have: the mids lean very slightly warm
+    return np.stack([l ** 0.97, l ** 0.995, l ** 1.035], axis=-1)
 
 
 def print_on(ink_rgb, sheet):
@@ -158,7 +172,7 @@ def plate_property():
         x1, y1 = round((x + w) * PX), round((y + h) * PX)
         path, final = best_render(shot)
         used[shot] = (path.name, final)
-        arr[y0:y1, x0:x1] = photograph(path, (x1 - x0, y1 - y0), 100 + i, LIFT.get(shot, 1.0))
+        arr[y0:y1, x0:x1] = photograph(path, (x1 - x0, y1 - y0), 100 + i, shot)
     ink = Image.fromarray((arr * 255 + 0.5).astype(np.uint8), "RGB")
     sheet = paper(11, (0.990, 0.986, 0.978), mottle=0.0035, tooth=0.0045)
     return print_on(ink, sheet), used

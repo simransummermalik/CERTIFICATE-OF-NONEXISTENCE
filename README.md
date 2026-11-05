@@ -40,15 +40,15 @@ It also found the cure. Brick up one stair door, one cloister door and one hall 
 
 ---
 
-So there are three documents.
+Nobody bricked up a door. The house was built anyway.
 
-**I. The Property.** The listing. Every photograph in it is honest. The rooms were built in a renderer to the same quarter-inch dimensions the inspector checked, and lit by simulated sunlight. Nothing was painted in to make the impossible look plausible. The stair hall in the large photograph is built lap upon lap, two hundred storeys deep, because that is what the stair is. It does not end. It only returns.
+It can only be built one way: room by room, through every doorway, putting each room exactly where its door says it must go. Go once round the cloister and the whole house must stand again, turned a quarter turn about the stone. Go round again, and again: four houses at once, sharing one courtyard and one stone, their walls running straight through each other's rooms. Climb the stair and all four must stand again, thirty-eight feet eight inches higher. Then again. It does not stop.
 
-**II. The Floor Plan.** The architect's sheet, A-101. The rooms are drawn in place, room by room, from the front door, and the three doorways that refuse to close are clouded in red. The stair is unfolded into one long section, where Level 1 at +38′-8″ is the same landing as Level 1 at 0′-0″. A detail shows the defect at full size: printed at eighteen by twenty-four inches, the red band on the drawn tape is exactly a quarter of an inch wide.
+**The House, Built Anyway** is that building, drawn in ink from above the way an architect draws a plan. The top storey is cut open at five feet so you can see into every room, its cut walls filled black. Every room is furnished, four times over: four dining tables, four grand pianos, twelve beds, each turned a quarter turn from the last, standing in one another's walls. Below, the tower falls away, storey after storey of the same four houses, until the lines grow too faint to draw. Every wall is where the proof says it has to be.
 
-**III. The Certificate.** It is issued by the Bureau of Euclidean Inspection, Division of Existence, Form N-1, and dated the fifth of November, 2026. It lists every inspection the house passed and the one it failed. It writes out the three walks as matrices that should be the identity and are not. The proof runs around its border in microtext, twice. The inspector's signature is the prover's answer. The architect's line is left blank, waiting for a hand. Across it, slightly crooked, is a red stamp: DOES NOT EXIST.
+At the centre is the court, the one place all four houses agree on. Its gravel is raked in rings around the stone and in squares out to the colonnade, the only patterns a quarter turn leaves unchanged. A man in an overcoat and a bowler hat stands beside the stone. His footprints cross the gravel from the colonnade. He is the only one there.
 
-The listing number and the certificate's serial are the same: the first digits of the house's fingerprint, `21A4 9C12 B72B C4EE`.
+The photographs are from inside. **Looking down** the stair hall from the first landing, the flights turn beneath you, landing after landing, smaller and smaller, until the light gives out. **Looking up**, they turn above you the same way. **The hall** runs east under its slot of sky, a quarter of an inch longer than the rooms beside it, which no photograph can show. The rooms were built to the same quarter-inch dimensions the inspector checked, and lit by simulated sunlight. Nothing was painted in to make the impossible look plausible.
 
 *The property has passed every inspection except existence.*
 
@@ -56,7 +56,7 @@ The listing number and the certificate's serial are the same: the first digits o
 
 ## Inspect it yourself
 
-You don't have to trust the certificate. Run
+You don't have to trust the inspector. Run
 
 ```
 python3 verify.py
@@ -70,4 +70,4 @@ It uses whole numbers and Python's standard library, nothing else. It rereads th
 
 ---
 
-The plates are in `submission/`. How the house, the proof and the pictures are built is in [BUILD.md](BUILD.md).
+The images are in `submission/`. How the house, the proof and the pictures are made is in [BUILD.md](BUILD.md).

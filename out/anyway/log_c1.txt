@@ -1,0 +1,29 @@
+/Users/summermalik/Desktop/certificateofnonexistance/render/anyway.py:301: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  w.use_nodes = True
+/Users/summermalik/Desktop/certificateofnonexistance/render/anyway.py:67: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+00:12.864  render           | Saved: 'out/anyway/c1_nx.png'
+WROTE out/anyway/c1_nx.png
+00:16.282  render           | Saved: 'out/anyway/c1_ny.png'
+WROTE out/anyway/c1_ny.png
+00:28.050  render           | Saved: 'out/anyway/c1_nz.png'
+WROTE out/anyway/c1_nz.png
+00:35.804  render           | Saved: 'out/anyway/c1_plane.png'
+WROTE out/anyway/c1_plane.png
+00:39.355  render           | Saved: 'out/anyway/c1_wx.png'
+WROTE out/anyway/c1_wx.png
+00:43.983  render           | Saved: 'out/anyway/c1_wy.png'
+WROTE out/anyway/c1_wy.png
+00:55.629  render           | Saved: 'out/anyway/c1_wz.png'
+WROTE out/anyway/c1_wz.png
+00:59.647  render           | Saved: 'out/anyway/c1_depth.png'
+WROTE out/anyway/c1_depth.png
+01:08.101  render           | Saved: 'out/anyway/c1_id.png'
+WROTE out/anyway/c1_id.png
+/Users/summermalik/Desktop/certificateofnonexistance/render/anyway.py:330: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+01:16.435  render           | Saved: 'out/anyway/c1_light.png'
+WROTE out/anyway/c1_light.png
+Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 01:30:33)
+
+Blender quit
